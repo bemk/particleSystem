@@ -33,7 +33,7 @@ public class Space extends JPanel implements MouseWheelListener
 			int shortage = noParticles - particles.size();
 			for (int idx = 0; idx < shortage; idx++)
 			{
-				particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(63)+1));
+				particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(100)+1));
 			}
 			revalidate();
 			repaint();
@@ -44,7 +44,7 @@ public class Space extends JPanel implements MouseWheelListener
 		this.noParticles = particles;
 		for (int i = 0; i < this.noParticles; i++)
 		{
-			this.particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(63)+1));
+			this.particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(100)+1));
 		}
 		t.start();
 	}
@@ -53,6 +53,7 @@ public class Space extends JPanel implements MouseWheelListener
 	{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
+		g2.drawString(Integer.toString(particles.size()), 2, 12);
 		g2.scale(1, -1);
 		g2.translate(this.getWidth()/2, -this.getHeight());
 		g2.setColor(new Color(128, 128, 255));
@@ -70,14 +71,14 @@ public class Space extends JPanel implements MouseWheelListener
 			if (noParticles < 25)
 				noParticles = 0;
 			else
-				noParticles -= 25;
+				noParticles -= 5;
 		}
 		else if (e.getWheelRotation() < 0)
 		{
-			if (noParticles > 1000)
+			if (noParticles >= 1000)
 				noParticles = 1000;
 			else
-				noParticles += 25;
+				noParticles += 5;
 		}
 		
 	}
