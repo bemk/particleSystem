@@ -1,16 +1,18 @@
 
 public class Particle {
 	double x;
-	double xOld = 0;
+	double xOld;
 	double y;
-	double yOld = 60;
+	double yOld;
 	int span = 0;
 	double grav;
 	int lifeTime;
-	public Particle(int x, int y, double grav, int life)
+	public Particle(int x, int y, double grav, int life, int xSource, int ySource)
 	{
-		this.x = x;
-		this.y = y + 60;
+		this.x = x + xSource;
+		this.xOld = xSource;
+		this.y = y + ySource;
+		this.yOld = ySource;
 		this.grav = grav;
 		this.lifeTime = life;
 	}

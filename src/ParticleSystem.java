@@ -19,6 +19,7 @@ public class ParticleSystem
 		frame.setVisible(true);
 		
 		frame.addMouseWheelListener(s);
+		frame.addKeyListener(s);
 	}
 	public ParticleSystem()
 	{

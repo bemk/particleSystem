@@ -5,13 +5,16 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 
-public class Space extends JPanel implements MouseWheelListener
+public class Space extends JPanel implements MouseWheelListener, KeyListener
 {
 
 	private static final long serialVersionUID = 1L;
 	private int noParticles;
 	private ArrayList<Particle> particles = new ArrayList<Particle>();
 	private Random r = new Random();
+	private int xSource, ySource;
+	
+	private static final boolean dbg = true;
 	
 	private int maxSpd = 20;
 	
@@ -33,7 +36,7 @@ public class Space extends JPanel implements MouseWheelListener
 			int shortage = noParticles - particles.size();
 			for (int idx = 0; idx < shortage; idx++)
 			{
-				particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(100)+1));
+				particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .25, r.nextInt(100)+1, xSource, ySource));
 			}
 			revalidate();
 			repaint();
@@ -42,9 +45,11 @@ public class Space extends JPanel implements MouseWheelListener
 	public Space(int particles)
 	{
 		this.noParticles = particles;
+		xSource=0;
+		ySource=50;
 		for (int i = 0; i < this.noParticles; i++)
 		{
-			this.particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .125, r.nextInt(100)+1));
+			this.particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2, r.nextInt(maxSpd)-maxSpd/2-1, .25, r.nextInt(100)+1, xSource, ySource));
 		}
 		t.start();
 	}
@@ -81,5 +86,60 @@ public class Space extends JPanel implements MouseWheelListener
 				noParticles += 5;
 		}
 		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch(e.getKeyCode())
+		{
+		case 37:
+			if (xSource > -400)
+			{
+				xSource -= 25;
+			}
+			break;
+		case 38:
+			if (ySource < 600)
+			{
+				ySource += 25;
+			}
+			break;
+		case 39:
+			if (xSource < 400)
+			{
+				xSource += 25;
+			}
+			break;
+		case 40:
+			if (ySource > 0)
+			{
+				ySource -= 25;
+			}
+			break;
+		}
+		if (dbg)
+		{
+			System.out.printf("Key:\t%d\n", e.getKeyCode());
+			System.out.printf("pressed\nx:\t%d\ny:\t%d\n\n", xSource, ySource);
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (dbg)
+		{
+			System.out.printf("released\nx:\t%d\ny:\t%d\n\n", xSource, ySource);
+		}
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+		if (dbg)
+		{
+			System.out.printf("x:\t%d\ny:\t%d\n\n", xSource, ySource);
+		}
 	}
 }
