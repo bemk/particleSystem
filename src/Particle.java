@@ -7,7 +7,7 @@ public class Particle {
 	int span = 0;
 	double grav;
 	int lifeTime;
-	public Particle(int x, int y, double grav, int life, int xSource, int ySource)
+	public Particle(double x, double y, double grav, int life, int xSource, int ySource)
 	{
 		this.x = x + xSource;
 		this.xOld = xSource;

@@ -36,7 +36,7 @@ public class Space extends JPanel implements MouseWheelListener, KeyListener, Mo
 			int shortage = noParticles - particles.size();
 			for (int idx = 0; idx < shortage; idx++)
 			{
-				particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2+1, r.nextInt(maxSpd), .25, r.nextInt(100)+1, xSource, ySource));
+				particles.add(new Particle(r.nextDouble()*maxSpd-maxSpd/2+1, r.nextDouble()*maxSpd-maxSpd/2+1, .25, r.nextInt(100)+1, xSource, ySource));
 			}
 			revalidate();
 			repaint();
@@ -49,7 +49,7 @@ public class Space extends JPanel implements MouseWheelListener, KeyListener, Mo
 		ySource=50;
 		for (int i = 0; i < this.noParticles; i++)
 		{
-			this.particles.add(new Particle(r.nextInt(maxSpd)-maxSpd/2, r.nextInt(maxSpd)-maxSpd/2-1, .25, r.nextInt(100)+1, xSource, ySource));
+			this.particles.add(new Particle(r.nextDouble()*maxSpd-maxSpd/2, r.nextDouble()*maxSpd-maxSpd/2-1, .25, r.nextInt(100)+1, xSource, ySource));
 		}
 		t.start();
 	}
