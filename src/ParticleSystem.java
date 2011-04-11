@@ -20,6 +20,8 @@ public class ParticleSystem
 		
 		frame.addMouseWheelListener(s);
 		frame.addKeyListener(s);
+		frame.addMouseListener(s);
+		frame.addMouseMotionListener(s);
 	}
 	public ParticleSystem()
 	{

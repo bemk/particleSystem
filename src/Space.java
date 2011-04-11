@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 
-public class Space extends JPanel implements MouseWheelListener, KeyListener
+public class Space extends JPanel implements MouseWheelListener, KeyListener, MouseListener, MouseMotionListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +14,7 @@ public class Space extends JPanel implements MouseWheelListener, KeyListener
 	private Random r = new Random();
 	private int xSource, ySource;
 	
-	private static final boolean dbg = true;
+	private static final boolean dbg = false;
 	
 	private int maxSpd = 20;
 	
@@ -93,25 +93,25 @@ public class Space extends JPanel implements MouseWheelListener, KeyListener
 		switch(e.getKeyCode())
 		{
 		case 37:
-			if (xSource > -400)
+			if (xSource > -375)
 			{
 				xSource -= 25;
 			}
 			break;
 		case 38:
-			if (ySource < 600)
+			if (ySource <= 575)
 			{
 				ySource += 25;
 			}
 			break;
 		case 39:
-			if (xSource < 400)
+			if (xSource <= 375)
 			{
 				xSource += 25;
 			}
 			break;
 		case 40:
-			if (ySource > 0)
+			if (ySource >= 25)
 			{
 				ySource -= 25;
 			}
@@ -141,5 +141,48 @@ public class Space extends JPanel implements MouseWheelListener, KeyListener
 		{
 			System.out.printf("x:\t%d\ny:\t%d\n\n", xSource, ySource);
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		xSource = e.getX()-this.getWidth()/2;
+		ySource = this.getHeight()-e.getY();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		xSource = e.getX()-this.getWidth()/2;
+		ySource = this.getHeight()-e.getY();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
